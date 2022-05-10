@@ -1,22 +1,62 @@
 import React, { FC, useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { FruitType } from "../Utils/fruitsData";
 import Item from "./ListItem";
 
-const StarredList: FC = () => {
-    return (
-        <View>
-            <Text>Starred List</Text>
-        </View>
-    )
+interface Props {
+    fruitsState: FruitType[];
+    setFruitsState: (array: FruitType[]) => void;
+  }
 
-}
+const StarredList: FC<Props> = ({fruitsState, setFruitsState}: Props) => { 
+    
+    const starItem = (item: FruitType) => {
+        const itemIndex = fruitsState.indexOf(item);
+        item.starred = !item.starred;
+        if (itemIndex > -1) {
+          fruitsState.splice(itemIndex, 1, item);
+        }
+        setFruitsState([...fruitsState]);
+        console.log(item);
+      };
+    
+
+  return (
+    <View style={styles.starredList}>
+      <FlatList
+        data={fruitsState}
+        renderItem={({ item }) => {
+            if (item.starred === true) {
+                return(
+                <TouchableOpacity onPress={() => starItem(item)}>
+                <Item
+                  id={item.id}
+                  name={item.name}
+                  price={item.price}
+                  starred={item.starred}
+                />
+              </TouchableOpacity>
+                )
+                    
+            }
+            
+        }}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    starredList: {
-        flex: 1,
-        width: "100%",
-    }
-})
+  starredList: {
+    flex: 1,
+    width: "100%",
+  },
+});
 
 export default StarredList;
