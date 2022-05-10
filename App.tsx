@@ -16,7 +16,6 @@ import StarredList from "./Components/StarredList";
 
 export default function App() {
   const [fruitsState, setFruitsState] = useState<FruitType[]>([]);
-  let [starredFruitState, setStarredFruitState] = useState<FruitType[]>([]);
   const [tab, setTab] = useState<string>("list");
 
   useEffect(() => {

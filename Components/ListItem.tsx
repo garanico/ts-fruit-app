@@ -1,5 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { FC } from 'react';
+import { View, Text, StyleSheet} from 'react-native';
 import { FruitType } from "../Utils/fruitsData";
 import { FontAwesome } from '@expo/vector-icons';
 

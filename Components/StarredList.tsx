@@ -1,7 +1,6 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   FlatList,
@@ -15,7 +14,7 @@ interface Props {
   }
 
 const StarredList: FC<Props> = ({fruitsState, setFruitsState}: Props) => { 
-    
+
     const starItem = (item: FruitType) => {
         const itemIndex = fruitsState.indexOf(item);
         item.starred = !item.starred;
